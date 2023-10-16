@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+
+    ionic-ui:
+      build:
+        context: ./src/frontend/dam
+        dockerfile:  Dockerfile
+      ports:
+        - "8100:8100"
+      container_name: ionic-ui
+      volumes:
+         - ./src/frontend/dam:/src/frontend/dam
+         - /src/frontend/dam/node_modules
+      command: ionic serve --external
+
+        
+    mongodb:
+        image: mongo:4.0.4
+        container_name: impiot_mongodb
+        ports:
+            - 27017:27017
+        environment:
+            - MONGO_INITDB_DATABASE=test
+        volumes:
+            - ./mongodb_data:/data/db
+
+
+    node-backend:
+        image: "node:12"
+        hostname: node-backend
+        user: "node"
+        working_dir: /home/node/app
+        container_name: node-backend
+        volumes:
+            - ./src/backend:/home/node/app
+            - ./src/frontend/dam:/home/node/app/static
+        depends_on:
+            - eclipse-mosquito-tls
+        ports: 
+            - "8000:3000"
+        command: "npm start"
+
+    ubuntu:
+        image: ubuntu
+        container_name: ubuntu
+        hostname: ubuntu
+        stdin_open: true
+        tty: true
+        entrypoint: /bin/bash
+
+    eclipse-mosquito-tls:
+        container_name: eclipse-mosquito-tls
+        hostname: eclipse-mosquito-tls
+        image: eclipse-mosquitto
+        ports:
+        - 1884:1884
+        - 9002:9001
+        volumes:
+        - ./mosquitto-tls/config:/mosquitto/config
+        - ./mosquitto-tls/data:/mosquitto/data
+        - ./mosquitto-tls/log:/mosquitto/log
+        - ./mosquitto-tls/certs:/mosquitto/certs
+

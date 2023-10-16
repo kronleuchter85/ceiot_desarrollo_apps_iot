@@ -1,0 +1,9 @@
+*/**/*.key
+*/**/*.crt
+*/**/*.srl
+*/**/*.csr
+*/**/node_modules/*
+*/**/mongodb_data/*
+*/**/mosquitto-tls/data/*
+*/**/mosquitto/data/*
+*/**/build/*

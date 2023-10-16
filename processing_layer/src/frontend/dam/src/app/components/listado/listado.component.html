@@ -1,0 +1,104 @@
+<ion-accordion-group *ngFor="let e of devices; let i=index">
+    <ion-accordion value="first">
+      <ion-item showReading id="{{e.id}}" slot="header" color="light">
+        <ion-label>{{e.name}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+
+        <table style="width: 100%;">
+          <tr>
+            <td style="padding-left: 20px; width: 60%;">
+              <table style="width: 70%; ">
+                <tr>
+                  <td>Id Sensor</td>
+                  <td>{{e.id}}</td>
+                </tr>
+                <tr>
+                  <td>Estado Sensor</td>
+                  <td>{{e.state}}</td>
+                </tr>
+                <tr>
+                  <td>Fecha Ultima lectura</td>
+                  <td>{{e.lastReadingDate | formatDate}}</td>
+                </tr>
+                <tr>
+                  <td >Ultima lectura</td>
+                  <td>{{e.lastReadingValue}}</td>
+                </tr>
+                <tr>
+                  <td>Ubicacion</td>
+                  <td>{{e.location}}</td>
+                </tr>
+                <tr>
+                  <td>Electrovalvula</td>
+                  <td>{{e.valveName}}</td>
+                </tr>
+              </table>
+            </td>
+            <td>
+                <button (click)="showReading(e)">Mostrar Lectura</button>
+                <br>
+                <div *ngIf="e.state == false">
+                  <button (click)="openValve(e)">Abrir Electrovalvula</button>
+                </div>
+                <div *ngIf="e.state == true">
+                  <button (click)="closeValve(e)">Cerrar Electrovalvula</button>
+                </div>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <ion-accordion-group *ngIf="e.riegos.length > 0">
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              <ion-label>Riegos</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <table style="width: 100%; text-align: center;">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th >Fecha</th>
+                    <th >apertura</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let r of e.riegos; let y=index">
+                  <tr>
+                    <td>{{r.id}}</td>
+                    <td>{{r.fecha  | formatDate}}</td>
+                    <td>{{r.apertura}}</td>
+                  </tr>
+                  </tbody>
+              </table>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+
+        <ion-accordion-group *ngIf="e.mediciones.length > 0">
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              <ion-label>Mediciones</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <table style="width: 100%; text-align: center;">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Valor</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let r of e.mediciones; let y=index">
+                  <tr>
+                    <td>{{r.id}}</td>
+                    <td>{{r.fecha | formatDate}}</td>
+                    <td>{{r.valor}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  # app_tests:
+  #   build: .
+  #   image: cese/poc-esp32-integracion-test
+  #   volumes:
+  #     - .:/project
+  #   command: ceedling
+
+  app:
+    build: .
+    image: cese/poc-esp32-bmp280
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    # depends_on: 
+    #   - app_tests
+    volumes:
+      - .:/project
+    command: idf.py clean build flash --port /dev/ttyUSB0
+  

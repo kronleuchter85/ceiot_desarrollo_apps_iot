@@ -1,0 +1,67 @@
+<ion-accordion-group *ngFor="let e of devices2; let i=index">
+    <ion-accordion value="first">
+      <ion-item showReading id="{{e.deviceId}}" slot="header" color="light">
+        <ion-label>{{e.deviceDescription}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+
+        <table style="width: 100%;">
+          <tr>
+            <td style="padding-left: 20px; width: 60%;">
+              <table style="width: 70%; ">
+                <tr>
+                  <td>Id Sensor</td>
+                  <td>{{e.deviceId}}</td>
+                </tr>
+                <tr>
+                  <td>Estado Sensor</td>
+                  <td>{{e.status}}</td>
+                </tr>
+                <tr>
+                  <td>Fecha Ultima lectura</td>
+                  <td>{{e.lastMeasureTime | formatDate}}</td>
+                </tr>
+                <tr>
+                  <td >Ultima lectura</td>
+                  <td>{{e.lastMeasureValue}}</td>
+                </tr>
+                <tr>
+                  <td>Ubicacion</td>
+                  <td>{{e.lastMeasureLocation}}</td>
+                </tr>
+              </table>
+            </td>
+           
+          </tr>
+        </table>
+        <br>
+       
+        <ion-accordion-group *ngIf="e.measures.length > 0">
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              <ion-label>Mediciones</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <table style="width: 100%; text-align: center;">
+                <thead>
+                  <tr>
+                    <th>Ubicacion</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Valor</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let r of e.measures; let y=index">
+                  <tr>
+                    <td>{{r.location}}</td>
+                    <td>{{r.time | formatDate}}</td>
+                    <td>{{r.value}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
