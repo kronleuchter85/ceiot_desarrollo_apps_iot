@@ -9,7 +9,7 @@ Pasos para ejecutar el proyecto
 
 0) Generar los correspondientes certificados con el script docs/crea_certs2.sh para el servidor Mosquitto e instalarlos en los clientes: ESP32 y el backend Node.js. Tener en cuenta de reemplazar las variables P1 por la IP del host donde se levantaran los servicios y P2 con el nombre del container asignado a Mosquitto (debido a que el servicio de Node.js accedera mediante dicho nombre de dominio en lugar de la IP del host).
 1) Ejecutar el comando npm install dentro de los directorios processing_layer/src/frontend y processing_layer/src/backend 
-2) Levantar el proyecto mediante docker-compose up en el directorio processing_layer. Esto debería crear los contenedores de la capa de procesamiento para los servicios de Mosquitto, Node y el frontend en Angular.
+2) Levantar el proyecto mediante docker-compose up en el directorio processing_layer. Esto debería crear los contenedores de las capas de transporte y procesamiento para los servicios de Mosquitto, Node y el frontend en Angular.
 3) Ejecutar el comando docker-compose up en el directorio fetching_layer con el ESP_32 conectado al sensor DHT11.
 4) Acceder al frontend en http://localhost:8100 y a la API rest mediante http://localhost:8000/api/devices3.
 
