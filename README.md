@@ -31,7 +31,7 @@ APIs provistas en Express:
 - GET /api/devices3/
 
 Estructura de datos utilizada en MongoDB:
-
+```
 {
     "_id": "string",
     "deviceId": "string",
@@ -52,6 +52,8 @@ Estructura de datos utilizada en MongoDB:
     ]
 }
 
+
+```
 
 Algunas capturas de pantalla del producto terminado:
 ===================================================
