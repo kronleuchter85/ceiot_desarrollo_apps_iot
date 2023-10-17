@@ -141,18 +141,6 @@ app.use(cors(corsOptions));
 //=======[ Main module code ]==================================================
 
 
-
-app.get('/api/devices2/', function (req, res, next) {
-
-    var result = [];
-
-    for (const [key, value] of Object.entries(devices)) {
-        result.push(value);
-    }
-
-    res.send(result);
-});
-
 app.get('/api/devices3/', async function (req, res, next) {
     res.send(await database.collection('devices').find({}).toArray());
 });
