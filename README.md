@@ -61,9 +61,9 @@ Algunas capturas de pantalla del producto terminado:
 Accediendo al home del proyecto en http://localhost:8100
 ![alt text](./docs/Screenshot1.png)
 
-Luego al navegar los distintos dispositivos podemos apreciar la información de cada uno, su estado y los botones disponibles para renderizar la última lectura y abrirla electroválvula. Notas que igualmente al desplegar el sensor el valor de su última lectura se renderiza en el componente gráfico automáticamente.
+Luego al navegar los distintos dispositivos podemos apreciar la información de cada uno.
 ![alt text](./docs/Screenshot2.png)
 
-Luego podemos explorar las diferentes mediciones y riegos disponibles para cada sensor. En caso de no contar con ninguno se oculta el menú accordion.
+Luego podemos explorar las diferentes mediciones para cada sensor. En caso de no contar con ninguno se oculta el menú accordion.
 ![alt text](./docs/Screenshot3.png)
 
